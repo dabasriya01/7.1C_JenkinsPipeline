@@ -1,0 +1,73 @@
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Build') {
+            steps {
+                echo '========== Stage 1: BUILD STAGE =========='
+                echo 'Tool Used: Maven'
+                echo 'Compiling and packaging application'
+            }
+        }
+
+        stage('Unit and Integration Tests') {
+            steps {
+                echo '========== Stage 2: TEST STAGE =========='
+                echo 'Tool Used: JUnit'
+                echo 'Running unit tests'
+                echo 'Running integration tests'
+            }
+        }
+
+        stage('Code Analysis') {
+            steps {
+                echo '========== Stage 3: CODE ANALYSIS =========='
+                echo 'Tool Used: SonarQube'
+                echo 'Checking code quality and standards'
+            }
+        }
+
+        stage('Security Scan') {
+            steps {
+                echo '========== Stage 4: SECURITY SCAN =========='
+                echo 'Tool Used: OWASP Dependency Check'
+                echo 'Scanning for vulnerabilities'
+            }
+        }
+
+        stage('Deploy to Staging') {
+            steps {
+                echo '========== Stage 5: STAGING DEPLOYMENT =========='
+                echo 'Tool Used: AWS EC2'
+                echo 'Deploying application to staging server'
+            }
+        }
+
+        stage('Integration Tests on Staging') {
+            steps {
+                echo '==========Stage 6: STAGING TESTS =========='
+                echo 'Tool Used: Selenium'
+                echo 'Running staging environment tests'
+            }
+        }
+
+        stage('Deploy to Production') {
+            steps {
+                echo '========== Stage 7: PRODUCTION DEPLOYMENT =========='
+                echo 'Tool Used: AWS EC2'
+                echo 'Deploying application to production server'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline executed successfully!'
+        }
+
+        failure {
+            echo 'Pipeline failed!'
+        }
+    }
+}
